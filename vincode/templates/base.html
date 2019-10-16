@@ -1,0 +1,190 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Vindecoder</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Raleway" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'fonts/ionicons/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/fontawesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <link rel="stylesheet" href="{% static 'css/mystyle.css/' %}">
+  </head>
+  {% block style %}{% endblock style %}
+  <body>
+
+	{% include "navbar.html" %}
+
+  {% block content %}
+   <section class="site-hero overlay" data-stellar-background-ratio="0.5" style="background-image: url({% static 'images/broken_car.jpg'%});">
+      <div class="container">
+        <div class="row align-items-center site-hero-inner justify-content-center">
+          <div class="col-md-8 text-center">
+
+            <div class="mb-5 element-animate">
+              <h1>Maşınınızı kəşf edin.</h1>
+              <p>Vinkodunuzu  yazaraq maşının tarixini öyrənin</p>
+            </div>
+
+            <form class="form-inline element-animate" method="POST" id="search-form">
+             {% csrf_token %}
+              <input type="text" name='search-btn' class="form-control form-control-block search-input" id="autocomplete" placeholder="Vikodunuzu buraya yazin" >
+              <button type="submit" class="btn axtar btn-primary">Axtar</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endblock content %}
+  {% block stripe %}
+  
+  {% endblock stripe %}
+
+  {% block service %}
+       <section class="feature-destination" id='info-data'>
+      <div class="container">
+        <div class="row align-items-center site-hero-inner justify-content-center">
+          <div class="col-md-8 text-center">
+                <style>
+                .custom-size{
+                  bottom:40px;
+                }
+                </style>
+            <h1 class='text-white custom-size position-absolute '>Maşınınızı yoxlanışdan keçirin</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 element-animate ">
+            <a id="myBtn1"  class="img-bg" style="background-image: url({% static 'images/electic.jpg'%}">
+              <div class="text">
+                <h2 class='font-weight-bold'>Elektrik hissələrini</h2>
+                <p>yoxlanışdan keçirin</p>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4 element-animate ">
+            <a id="myBtn2"  class="img-bg" style="background-image: url({% static 'images/motor.jpg'%})">
+              <div class="text">
+                <h2  class='font-weight-bold '>Mühərriyinizi</h2>
+                <p>yoxlanışdan keçirin</p>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4 element-animate ">
+            <a  id="myBtn3" class="img-bg last" style="background-image: url({% static 'images/full.jpg'%})">
+              <div class="text">
+                <h2  class='font-weight-bold'>Hərşeyini</h2>
+                <p>yoxlanışdan keçirin</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>
+    Şirkətimiz tərəfindən siz maşının elektrik , mühərriyini və ya hər bir detalını  yoxlanışdan keçirdə bilərsiniz
+   <h6>Əlaqə</h6>
+   <a href="tel:+994776433352">+994776433352</a>
+   <h6>Ünvan</h6>
+   <p>Vincode Azerbaijan - Mikayıl Müşfiq küç.2H, AZ 1004 Baku, Azerbaijan</p>
+    </p>
+  </div>
+
+</div>
+  {% endblock service %}
+
+  {% block insurance %}
+    <section class="site-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center">
+            <h2>Texniki sığorta</h2>
+            <p>Biz Vincode şirkəti olaraq aşağıdakı paketləri sizə təqdim edirik</p>
+          </div>
+        </div>
+        <div class="row top-destination">
+       
+        
+          <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <a href="#" class="place">
+              <img src="{% static 'images/car1.jpg'%}" alt="Image placeholder">
+              <h2>30%-lıq sığorta</h2>
+              <p class='text-black'>sığorta</p>
+            </a>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <a href="#" class="place">
+              <img src="{% static 'images/car3.jpeg'%}" alt="Image placeholder">
+              <h2>50%-lıq sığorta</h2>
+              <p class='text-black'>sığorta</p>
+            </a>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <a href="#" class="place">
+              <img src="{% static 'images/car2.jpeg'%}" alt="Image placeholder">
+              <h2>100%lıq sığorta</h2>
+              <p class='text-black'>sığorta</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endblock insurance %}
+
+  {% block fixing %}
+    <section class="section-cover" data-stellar-background-ratio="0.5" style="background-image: url({% static 'images/carfix.jpeg'%});">
+      <div class="container">
+        <div class="row justify-content-center align-items-center intro">
+          <div class="col-md-7 text-center element-animate">
+            <h2>Maşınınızı təmir etdirməyə vaxtınız yoxdur?</h2>   
+            <p id='contact-scroll' >Maşınınızı bizə həvalə edərək servisimizə gətirərək təmir etdikdən sonra qaytarırıq 100% zəmanət evakuatorla daşınma</p>
+            <p><a href="#"  class="btn btn-black">Sifariş et</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endblock fixing %}
+
+{% block contact %}
+ 
+{% endblock contact%}
+
+
+
+	{% include "footer.html" %}
+ 
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery-migrate-3.0.0.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <script src="{% static 'js/stripe-related.js' %}"></script>
+    <script src="{% static 'js/modal.js' %}"></script>
+    {% block script %}{% endblock script %}
+
+  </body>
+</html>

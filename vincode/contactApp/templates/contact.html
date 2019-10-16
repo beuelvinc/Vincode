@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% endblock content %}
+{% block fixing %}
+{% endblock fixing %}
+{% block insurance %}
+{% endblock insurance %}
+{% block service %}
+{% endblock service %}
+
+{% block contact %}
+
+<div class="container">
+      <div class="row align-items-center site-hero-inner justify-content-center">
+          <div class="col-md-8 text-center">
+            <h2 class='mb-4 mt-4'>Bizimlə əlaqə</h2>
+          </div>
+      </div>
+	<form action="" method='POST' >
+		{% csrf_token %}
+		{{form}}
+		<input type="submit" class=" btn btn-success mt-4 mb-4" value='Göndər'>
+		</div>
+	</form>
+
+</div>
+{% endblock contact %}
+

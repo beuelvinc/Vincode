@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+{% endblock style %}
+
+{% block content %}
+
+
+    <section class="site-hero overlay" data-stellar-background-ratio="0.5" style="background-image: url({% static 'images/broken_car.jpg'%});">
+      <div class="container">
+        <div class="row align-items-center site-hero-inner justify-content-center">
+          <div class="col-md-8 text-center">
+          {% comment %}  after email sending {% endcomment %}
+            {% if messages %}
+              <ul class="messages">
+                  {% for message in messages %}
+                  <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+                  {% endfor %}
+              </ul>
+            {% endif %}
+        {% comment %} done {% endcomment %}
+
+            <div class="mb-5 element-animate">
+              <h1>Ödəniş hissəsi</h1>
+              <p>Hər bir axtarış 2 dollardır</p>
+            </div>
+
+            
+         
+			<form  method="POST"  id="payment-form" data-token='{{publish_key}}'>
+				{% csrf_token %}
+
+				<div class="form">
+					<label for="card-element" class='text-center'>
+					<h2 class='text-center text-white'>Credit or debit card</h2>
+					</label>
+           <div class="form-group">
+              <label for="exampleInputEmail1"></label>
+              <input type="email" class="form-control" style='border-radius:0px;border:none; background-color:white;' name='email' id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Elektron ünvan">
+            </div>
+
+					<div id="card-element"style='border-radius:0px; border:none;' class='form-control'>
+					<!-- A Stripe Element will be inserted here. -->
+					</div>
+
+					<!-- Used to display form errors. -->
+					<div id="card-errors" class='text-white' role="alert"></div>
+				</div>
+
+				<input type='submit' value='Təsdiq' class='btn btn-block btn-danger  my-3 '>
+			</form>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock content %}
+
+{% block script %}
+<script>
+var stripe = Stripe('{{publish_key}}');
+var elements = stripe.elements();
+
+// Custom styling can be passed to options when creating an Element.
+// (Note that this demo uses a wider set of styles than the guide below.)
+var style = {
+  base: {
+    color: '#32325d',
+    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+    fontSmoothing: 'antialiased',
+    fontSize: '16px',
+    '::placeholder': {
+      color: '#aab7c4'
+    }
+  },
+  invalid: {
+    color: '#fa755a',
+    iconColor: '#fa755a'
+  }
+};
+
+// Create an instance of the card Element.
+var card = elements.create('card', {style: style});
+
+// Add an instance of the card Element into the `card-element` <div>.
+card.mount('#card-element');
+
+// Handle real-time validation errors from the card Element.
+card.addEventListener('change', function(event) {
+  var displayError = document.getElementById('card-errors');
+  if (event.error) {
+    displayError.textContent = event.error.message;
+  } else {
+    displayError.textContent = '';
+  }
+});
+
+// Handle form submission.
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  stripe.createToken(card).then(function(result) {
+    if (result.error) {
+      // Inform the user if there was an error.
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
+    } else {
+      // Send the token to your server.
+      stripeTokenHandler(result.token);
+    }
+  });
+});
+
+// Submit the form with the token ID.
+function stripeTokenHandler(token) {
+  // Insert the token ID into the form so it gets submitted to the server
+  var form = document.getElementById('payment-form');
+  var hiddenInput = document.createElement('input');
+  hiddenInput.setAttribute('type', 'hidden');
+  hiddenInput.setAttribute('name', 'stripeToken');
+  hiddenInput.setAttribute('value', token.id);
+  form.appendChild(hiddenInput);
+  form.submit();
+  sessionStorage.setItem("shouldShow",'true');
+	window.location.assign("{% url 'mainApp:home'%}")         
+
+}
+
+</script>
+{% endblock script %}
